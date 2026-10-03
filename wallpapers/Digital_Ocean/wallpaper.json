@@ -1,7 +1,0 @@
-{
-  "name": "Digital Ocean",
-  "description": "Animated procedural ocean waves.",
-  "category": "Abstract",
-  "author": "NebulaWall",
-  "shader": "digital_ocean.glsl"
-}

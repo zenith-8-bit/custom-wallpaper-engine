@@ -1,0 +1,5 @@
+{
+  "name": "Seascape",
+  "description": "Procedural animated ocean with waves, sky, reflections and atmospheric lighting",
+  "shader": "seascape.glsl"
+}

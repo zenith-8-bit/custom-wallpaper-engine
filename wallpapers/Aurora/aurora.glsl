@@ -1,4 +1,115 @@
 #version 330 core
-in vec2 v_uv; out vec4 fragColor;
-uniform float iTime; uniform vec3 iResolution;
-void main(){vec2 p=v_uv*2.0-1.0;p.x*=iResolution.x/iResolution.y;float w1=sin(p.x*3.0+iTime*.35)*.18;float w2=sin(p.x*6.0-iTime*.55)*.08;float b=exp(-pow((p.y-.25-w1-w2)*7.0,2.0));float b2=exp(-pow((p.y-.05+w1)*9.0,2.0));vec3 c=vec3(.005,.012,.035)+vec3(.05,.75,.38)*b+vec3(.12,.35,1.0)*b2*.55;fragColor=vec4(c,1.0);}
+
+uniform float iTime;
+uniform vec3 iResolution;
+
+out vec4 fragColor;
+
+
+float rand(vec2 n)
+{
+    return fract(
+        sin(dot(n, vec2(12.9898, 4.1414))) *
+        43758.5453
+    );
+}
+
+
+float noise(vec2 p)
+{
+    vec2 ip = floor(p);
+    vec2 u = fract(p);
+
+    u = u * u * (3.0 - 2.0 * u);
+
+    float res = mix(
+        mix(
+            rand(ip),
+            rand(ip + vec2(1.0, 0.0)),
+            u.x
+        ),
+        mix(
+            rand(ip + vec2(0.0, 1.0)),
+            rand(ip + vec2(1.0, 1.0)),
+            u.x
+        ),
+        u.y
+    );
+
+    return res * res;
+}
+
+
+const mat2 m2 = mat2(
+     0.8, -0.6,
+     0.6,  0.8
+);
+
+
+float fbm(in vec2 p)
+{
+    float f = 0.0;
+
+    f += 0.5000 * noise(p);
+    p = m2 * p * 2.02;
+
+    f += 0.2500 * noise(p);
+    p = m2 * p * 2.03;
+
+    f += 0.1250 * noise(p);
+    p = m2 * p * 2.01;
+
+    f += 0.0625 * noise(p);
+
+    return f / 0.769;
+}
+
+
+float pattern(in vec2 p)
+{
+    vec2 q = vec2(
+        fbm(p + vec2(0.0, 0.0))
+    );
+
+    vec2 r = vec2(
+        fbm(
+            p +
+            4.0 * q +
+            vec2(1.7, 9.2)
+        )
+    );
+
+    r += iTime * 0.15;
+
+    return fbm(
+        p + 1.760 * r
+    );
+}
+
+
+void main()
+{
+    vec2 fragCoord = gl_FragCoord.xy;
+
+    vec2 uv = fragCoord / iResolution.xy;
+
+    // Scale UV
+    uv *= 4.5;
+
+    float displacement = pattern(uv);
+
+    vec4 color = vec4(
+        displacement * 1.2,
+        0.2,
+        displacement * 5.0,
+        1.0
+    );
+
+    // Original CineShader depth calculation
+    color.a = min(
+        color.r * 0.25,
+        1.0
+    );
+
+    fragColor = color;
+}

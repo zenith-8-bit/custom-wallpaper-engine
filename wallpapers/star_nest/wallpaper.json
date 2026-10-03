@@ -1,0 +1,5 @@
+{
+  "name": "Star Nest",
+  "description": "Procedural volumetric star field with a deep-space tunnel effect",
+  "shader": "star_nest.glsl"
+}
