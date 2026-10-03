@@ -1,0 +1,5 @@
+{
+  "name": "Synthwave Sunset",
+  "description": "Procedural synthwave sunset with raymarched terrain, stars, fog and neon lighting",
+  "shader": "synthwave_sunset.glsl"
+}

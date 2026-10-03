@@ -1,0 +1,7 @@
+{
+  "name": "Cyber Rain",
+  "description": "Glowing cyberpunk rain rendered procedurally.",
+  "category": "Cyberpunk",
+  "author": "NebulaWall",
+  "shader": "cyber_rain.glsl"
+}

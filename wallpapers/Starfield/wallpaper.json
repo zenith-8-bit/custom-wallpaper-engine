@@ -1,0 +1,7 @@
+{
+  "name": "Starfield",
+  "description": "Deep-space procedural starfield.",
+  "category": "Space",
+  "author": "NebulaWall",
+  "shader": "starfield.glsl"
+}

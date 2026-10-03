@@ -1,0 +1,7 @@
+{
+  "name": "Aurora",
+  "description": "Slow-moving northern lights over a dark landscape.",
+  "category": "Nature",
+  "author": "NebulaWall",
+  "shader": "aurora.glsl"
+}

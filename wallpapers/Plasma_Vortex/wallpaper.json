@@ -1,0 +1,7 @@
+{
+  "name": "Plasma Vortex",
+  "description": "Rotating luminous plasma tunnel.",
+  "category": "Abstract",
+  "author": "NebulaWall",
+  "shader": "plasma_vortex.glsl"
+}

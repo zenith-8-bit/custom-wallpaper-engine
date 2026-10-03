@@ -1,0 +1,5 @@
+{
+    "name": "Glowing Skull",
+    "description": "A sinister animated neon skull with glowing eyes",
+    "shader": "glowing_skull.glsl"
+}

@@ -1,0 +1,5 @@
+{
+    "name": "Pixel Knight",
+    "description": "Animated pixel-art knight scene adapted from Shadertoy",
+    "shader": "pixel_knight.glsl"
+}
